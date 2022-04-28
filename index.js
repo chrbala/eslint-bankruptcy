@@ -100,7 +100,7 @@ async function insertCommentsInFile(filePath, violations, explanation) {
         if (explanation) {
           toAppend.push(`${leadingWhitespace}// ${explanation}`);
         }
-        toAppend.push(leadingWhitespace + getEslintDisableComent(violation));
+        toAppend.push(leadingWhitespace + getEslintDisableComment(violation));
       }
       toAppend.push(line);
       return [...acc, ...toAppend];
@@ -114,28 +114,33 @@ async function insertCommentsInFile(filePath, violations, explanation) {
 /**
  * @param {string[]} rules
  */
-function getEslintDisableComent(rules) {
-  return `// eslint-disable-next-line ${rules.join(" ")}`;
+function getEslintDisableComment(rules) {
+  const ruleSet = new Set(rules);
+  return `/* eslint-disable-next-line ${Array.from(ruleSet).join(', ')} */`;
 }
 
 /**
  * @param {Array<{filePath: string, messages: Array<{ruleId: string, line: number}>}>} eslintReport
  * @param {string[]} rules
- * @return {{[filePath: string]: {[lineNumber: number]: string[]}}}}
+ * @returns{{[filePath: string]: {[lineNumber: number]: string[]}}}}
  */
 function getViolations(eslintReport, rules) {
   return _(eslintReport)
-    .flatMapDeep(({ filePath, messages }) =>
-      _.flatMap(messages, ({ ruleId, line }) => ({ filePath, ruleId, line }))
+    .flatMapDeep(({filePath, messages}) =>
+      _.flatMap(messages, ({ruleId, line}) => ({filePath, ruleId, line}))
     )
-    .groupBy("filePath")
-    .mapValues((entry) =>
-      _(entry)
-        .filter(({ ruleId }) => rules.includes(ruleId))
-        .groupBy("line")
-        .mapValues((violations) => _.map(violations, "ruleId"))
-        .value()
-    )
+    .groupBy('filePath')
+    .mapValues(entry => {
+      let _entry = _(entry);
+      if (rules != null && rules.length > 0) {
+        _entry = _entry.filter(({ruleId}) => rules.includes(ruleId));
+      }
+
+      return _entry
+        .groupBy('line')
+        .mapValues(violations => _.map(violations, 'ruleId'))
+        .value();
+    })
     .toPairs()
     .filter(([, violations]) => Boolean(_.size(violations)))
     .fromPairs()

@@ -24,7 +24,6 @@ require("yargs")
       alias: "r",
       array: true,
       string: true,
-      demandOption: true,
       description:
         "The rule to disable. Pass this flag multiple times to disable multiple rules at once.",
     },

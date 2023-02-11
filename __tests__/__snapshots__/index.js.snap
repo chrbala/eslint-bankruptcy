@@ -19,6 +19,8 @@ console.log();
 "
 `;
 
+exports[`eslint-bankruptcy --eslintOutputFilePath multiple-identical-rules-one-line.js 1`] = `"console.log(); console.log();"`;
+
 exports[`eslint-bankruptcy --eslintOutputFilePath multiple-rules-one-line.js 1`] = `
 "let foo_bar;
 
@@ -69,6 +71,8 @@ exports[`eslint-bankruptcy dry run already-disabled-line.js 1`] = `
 console.log();
 "
 `;
+
+exports[`eslint-bankruptcy dry run multiple-identical-rules-one-line.js 1`] = `"console.log(); console.log();"`;
 
 exports[`eslint-bankruptcy dry run multiple-rules-one-line.js 1`] = `
 "let foo_bar;
@@ -144,6 +148,11 @@ console.log();
 "
 `;
 
+exports[`eslint-bankruptcy no-console and camelcase multiple-identical-rules-one-line.js 1`] = `
+"// eslint-disable-next-line no-console
+console.log(); console.log();"
+`;
+
 exports[`eslint-bankruptcy no-console and camelcase multiple-rules-one-line.js 1`] = `
 "// eslint-disable-next-line camelcase
 let foo_bar;
@@ -199,6 +208,11 @@ console.log();
 "
 `;
 
+exports[`eslint-bankruptcy only no-console multiple-identical-rules-one-line.js 1`] = `
+"// eslint-disable-next-line no-console
+console.log(); console.log();"
+`;
+
 exports[`eslint-bankruptcy only no-console multiple-rules-one-line.js 1`] = `
 "let foo_bar;
 
@@ -252,6 +266,12 @@ console.log();
 // eslint-disable-next-line no-console
 console.log();
 "
+`;
+
+exports[`eslint-bankruptcy set explanation message multiple-identical-rules-one-line.js 1`] = `
+"// inserted explanation
+// eslint-disable-next-line no-console
+console.log(); console.log();"
 `;
 
 exports[`eslint-bankruptcy set explanation message multiple-rules-one-line.js 1`] = `

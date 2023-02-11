@@ -103,7 +103,8 @@ async function insertCommentsInFile(filePath, violations, explanation) {
  * @param {string[]} rules 
  */
 function getEslintDisableComent(rules) {
-  return `// eslint-disable-next-line ${rules.join(' ')}`;
+  const ruleSet = new Set(rules);
+  return `// eslint-disable-next-line ${Array.from(ruleSet).join(' ')}`;
 }
 
 /**

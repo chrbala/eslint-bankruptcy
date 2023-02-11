@@ -19,6 +19,15 @@ console.log();
 "
 `;
 
+exports[`eslint-bankruptcy --eslintOutputFilePath already-disabled-line-different-rule.js 1`] = `
+"let foo_bar;
+
+// One already disabled
+// eslint-disable-next-line no-console
+console.log(); foo_bar;
+"
+`;
+
 exports[`eslint-bankruptcy --eslintOutputFilePath multiple-rules-one-line.js 1`] = `
 "let foo_bar;
 
@@ -67,6 +76,15 @@ exports[`eslint-bankruptcy dry run already-disabled-line.js 1`] = `
 // Already disabled
 // eslint-disable-next-line no-console
 console.log();
+"
+`;
+
+exports[`eslint-bankruptcy dry run already-disabled-line-different-rule.js 1`] = `
+"let foo_bar;
+
+// One already disabled
+// eslint-disable-next-line no-console
+console.log(); foo_bar;
 "
 `;
 
@@ -144,6 +162,17 @@ console.log();
 "
 `;
 
+exports[`eslint-bankruptcy no-console and camelcase already-disabled-line-different-rule.js 1`] = `
+"// eslint-disable-next-line camelcase
+let foo_bar;
+
+// One already disabled
+// eslint-disable-next-line no-console
+// eslint-disable-next-line camelcase
+console.log(); foo_bar;
+"
+`;
+
 exports[`eslint-bankruptcy no-console and camelcase multiple-rules-one-line.js 1`] = `
 "// eslint-disable-next-line camelcase
 let foo_bar;
@@ -199,6 +228,15 @@ console.log();
 "
 `;
 
+exports[`eslint-bankruptcy only no-console already-disabled-line-different-rule.js 1`] = `
+"let foo_bar;
+
+// One already disabled
+// eslint-disable-next-line no-console
+console.log(); foo_bar;
+"
+`;
+
 exports[`eslint-bankruptcy only no-console multiple-rules-one-line.js 1`] = `
 "let foo_bar;
 
@@ -251,6 +289,15 @@ console.log();
 // Already disabled
 // eslint-disable-next-line no-console
 console.log();
+"
+`;
+
+exports[`eslint-bankruptcy set explanation message already-disabled-line-different-rule.js 1`] = `
+"let foo_bar;
+
+// One already disabled
+// eslint-disable-next-line no-console
+console.log(); foo_bar;
 "
 `;
 
